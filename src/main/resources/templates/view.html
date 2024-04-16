@@ -28,7 +28,7 @@
                 console.log(response)
                 let pathName = window.location.pathname;
                 let module=``;
-                let applicationmenu = response.applicationmenu;
+                let applicationmenu =response.applicationmenu[pathName];
 
                 for(let i in applicationmenu){
                     if(pathName == applicationmenu[i].path){
