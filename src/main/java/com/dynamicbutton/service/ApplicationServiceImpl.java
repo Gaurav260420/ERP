@@ -4,6 +4,7 @@ import com.dynamicbutton.entity.ApplicationEntity;
 import com.dynamicbutton.entity.ApplicationMenuEntity;
 import com.dynamicbutton.repo.ApplicationMenuRepo;
 import com.dynamicbutton.repo.ApplicationRepo;
+import com.dynamicbutton.utility.DataTypeUtility;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public Map<String, Object> getApplicationMenu(Map<String, Object> map, HttpServletRequest request) {
         Map<String,Object> result = new HashMap<>();
-        Long applicationId = Long.parseLong( String.valueOf(map.get("applicationid")));
+        Long applicationId = DataTypeUtility.getForeignKeyValue(map.get("applicationid"));
         List<ApplicationMenuEntity> applicationEntity =applicationMenuRepo.findAllByApplicationid(applicationId);
         Map<String,ApplicationMenuEntity> applicationMenuMap = new HashMap<>();
         Map<String,List<Map<String,Object>>> applicationMenuMapp = new HashMap<>();
